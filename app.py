@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import csv
 
 
@@ -11,8 +11,13 @@ def index():
 
 
 @app.route('/event')
-def events():
-    return render_template('events.html')
+def event():
+    return render_template('event.html')
+
+
+@app.route('/testimonial')
+def testimonial():
+    return render_template('testimonial.html')
 
 @app.route('/membership', methods=['GET', 'POST'])
 def membership():
@@ -25,6 +30,10 @@ def membership():
         return render_template('confirmation.html', full_name=full_name, phone_number=phone_number)
     else:
         return render_template('membership.html')
+    
+@app.route('/assets/<path:path>')
+def send_static(path):
+    return send_from_directory('assets', path)
 
 
 if __name__ == '__main__':

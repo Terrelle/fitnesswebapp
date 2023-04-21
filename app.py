@@ -30,7 +30,7 @@ def products():
 @app.route('/membership', methods=['GET', 'POST'])
 def membership():
     if request.method == 'POST':
-        full_name = request.form['full_name']
+        full_name = request.form['name']
         phone_number = request.form['phone_number']
         with open('membership.csv', mode='a', newline='') as file:
             writer = csv.writer(file)

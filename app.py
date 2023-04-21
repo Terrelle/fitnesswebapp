@@ -19,6 +19,10 @@ def event():
 def testimonial():
     return render_template('testimonial.html')
 
+@app.route('/articles')
+def articles():
+    return render_template('articles.html')
+
 @app.route('/membership', methods=['GET', 'POST'])
 def membership():
     if request.method == 'POST':

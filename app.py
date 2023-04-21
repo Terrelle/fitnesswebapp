@@ -23,6 +23,10 @@ def testimonial():
 def articles():
     return render_template('articles.html')
 
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
 @app.route('/membership', methods=['GET', 'POST'])
 def membership():
     if request.method == 'POST':

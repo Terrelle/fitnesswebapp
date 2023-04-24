@@ -49,7 +49,17 @@ def products():
     return render_template('product.html', products = products)
 
 
+from database import get_members
+@app.route('/members')
+def members():
+    members = get_members()
 
+    return render_template('member.html', members = members)
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
 @app.route('/testimonial')
@@ -146,6 +156,32 @@ def delete_event(event_id):
     remove_event_db(event_id)
 
     return redirect('/event')
+
+
+
+from database import add_member_db
+@app.route('/add_member', methods=['GET', 'POST'])
+def add_member():
+    print("ROUTE HIT")
+    if request.method == 'POST':
+        # get form data
+        print(request.form)
+        print(request.form.__dict__)
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        job_title = request.form['job_title']
+        description = request.form['description']
+        # insert product into database
+        add_member_db(first_name, last_name, email, job_title, description)
+        
+        return redirect('/members')
+
+from database import remove_member_db
+@app.route('/remove_member/<int:member_id>', methods=['POST'])
+def delete_member(member_id):
+    remove_member_db(member_id)
+    return redirect('/members')
 
 
 

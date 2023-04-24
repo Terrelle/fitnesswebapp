@@ -64,3 +64,30 @@ def remove_event_db(event_id):
     db.commit()
     db.close()
 
+
+
+def get_members():
+    db = connect()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM members")
+    members = cursor.fetchall()
+    db.close()
+
+    return members
+
+def add_member_db(first_name, last_name, email, job_title, description):
+    db = connect()
+    cursor = db.cursor()
+    query = "INSERT INTO members (first_name, last_name, email, job_title, description) VALUES (%s, %s, %s, %s, %s)"
+    values = (first_name, last_name, email, job_title, description)
+    cursor.execute(query, values)
+    db.commit()
+    db.close()
+
+def remove_member_db(member_id):
+    db = connect()
+    cursor = db.cursor()
+    query = "DELETE FROM members WHERE id = %s"
+    cursor.execute(query, (member_id,))
+    db.commit()
+    db.close()

@@ -37,6 +37,8 @@
                             <li class="nav-item"><a class="nav-link" href="recipe">Recipes</a></li>
                             <li class="nav-item"><a class="nav-link" href="about">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="members">Members</a></li>
+                            <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
     
     
     
@@ -73,7 +75,7 @@
                             {% endif %}
                             <div class="portfolio-caption-heading">{{ event[1] }}</div>
                             <div class="portfolio-caption-subheading text-muted">{{ event[2] }}</div>
-                            <div class="portfolio-caption-subheading text-muted"><b>${{ event[3] }}</b></div>
+                            <div class="portfolio-caption-subheading text-muted"><b>{{ event[3] }}</b></div>
 
                             <form action="{{ url_for('delete_event', event_id=event[0]) }}" method="post">
                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -94,15 +96,15 @@
         </div>
         
         <form id="contactForm" action="/add_event" method="post" enctype="multipart/form-data">
-            <input class="form-control" type="text" id="name" name="name" placeholder="Name of Event"><br>
+            <input class="form-control" type="text" id="name"  name="name" placeholder="Name of Event" data-sb-validations="required"><br>
           
-            <input class="form-control" type="text" id="location" name="location" placeholder="Add location"><br>
+            <input class="form-control" type="text" id="location" data-sb-validations="required" name="location" placeholder="Add location"><br>
           
-            <textarea class="form-control" id="description" name="description" placeholder="Description of Event"></textarea><br>
+            <textarea class="form-control" id="description" data-sb-validations="required" name="description" placeholder="Description of Event"></textarea><br>
           
-            <input class="form-control" type="file" name="image"><br>
-          
-            <button class="btn btn-primary btn-xl text-uppercase" value="Add Event" id="submitButton" type="submit">Add Event</button>
+            <input class="form-control" type="file" data-sb-validations="required" name="image"><br>
+            
+            <button class="btn btn-primary btn-xl text-uppercase"  value="Add Event" id="submitButton" type="submit">Add Event</button>
           </form>
     </div>
 </section>
